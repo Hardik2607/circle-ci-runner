@@ -5,7 +5,7 @@ workflows:
       - runner-test
 jobs:
   runner-test:
-    machine: true
+    launch_agent: true
     resource_class: hardik2607/circle-ci
     steps:
       - run: echo "Hi I'm on Runners!"
