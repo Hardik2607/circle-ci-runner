@@ -5,7 +5,8 @@ workflows:
       - runner-test
 jobs:
   runner-test:
-    launch_agent: true
+    docker:
+      - image: ubuntu:latest
     resource_class: hardik2607/circle-ci
     steps:
       - run: echo "Hi I'm on Runners!"
