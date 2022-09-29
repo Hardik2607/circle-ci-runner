@@ -36,6 +36,7 @@ jobs:
     steps:
       - docker/build:
           attach-at: .
+          install-docker: true
           dockerfile: Dockerfile
           image: $CIRCLE_PROJECT_REPONAME/$CIRCLE_BUILD_NUM
           step-name: Docker-Build          
