@@ -2,11 +2,15 @@ version: 2.1
 workflows:
   testing:
     jobs:
-      - runner-test
+      - Maven-Build
 jobs:
   runner-test:
     docker:
-      - image: ubuntu:latest
+      - image: maven:3.8.6-openjdk-11
     resource_class: hardik2607/circle-ci
     steps:
-      - run: echo "Hi I'm on Runners!"
+      - checkout
+      - run:
+          command: |
+            mvn clean install
+          
