@@ -4,7 +4,7 @@ workflows:
     jobs:
       - Maven-Build
 jobs:
-  runner-test:
+  Maven-Build:
     docker:
       - image: maven:3.8.6-openjdk-11
     resource_class: hardik2607/circle-ci
