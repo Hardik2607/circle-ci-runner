@@ -1,12 +1,12 @@
 version: 2.1
 orbs:
-  docker-publish: circleci/docker-publish@0.1.7
+  docker: circleci/docker@2.1.4
 
 workflows:
   testing:
     jobs:
       - Maven-Build
-      - Docker-Build
+      # - Docker-Build
 
 jobs:
   Maven-Build:
@@ -23,12 +23,17 @@ jobs:
       - save_cache:
           paths:
             - ~/.m2
-          key: maven-cache 
-  Docker-Build:
-    docker:
-      - image: node:14
-    resource_class: hardik2607/circle-ci
-    steps:
-      - docker-publish:
-          deploy: false
+          key: maven-cache
+      - docker/build:
+          dockerfile: ./Dockerfile
           image: $CIRCLE_PROJECT_REPONAME/$CIRCLE_BUILD_NUM
+          step-name: Docker-Build
+
+  # Docker-Build:
+  #   docker:
+  #     - image: node:14
+  #   resource_class: hardik2607/circle-ci
+  #   steps:
+  #     - docker-publish:
+  #         deploy: false
+          
