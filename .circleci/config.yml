@@ -1,18 +1,16 @@
 version: 2.1
 orbs:
   docker-publish: circleci/docker-publish@0.1.7
-
+  maven: circleci/maven@1.1
 workflows:
   testing:
     jobs:
       - Maven-Build
-      # - docker-publish:
-      #     registry: https://hub.docker.com/
-      #     dockerfile: ~/Dockerfile
+      - Docker-Build
 jobs:
   Maven-Build:
     docker:
-      - image: maven:3.8.6-openjdk-11
+      - image: circleci/maven@1.1                         # maven:3.8.6-openjdk-11
     resource_class: hardik2607/circle-ci
     steps:
       - checkout
@@ -25,6 +23,8 @@ jobs:
           paths:
             - ~/.m2
           key: maven-cache 
-      - docker-publish/install
-      - run: |
-          command: docker build -t javaapp .
+      - persist_to_workspace:
+          root: .
+          paths:
+            - .
+  # Docker-Build:
