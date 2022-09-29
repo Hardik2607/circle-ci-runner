@@ -6,7 +6,8 @@ workflows:
   testing:
     jobs:
       - Maven-Build
-      # - Docker-Build
+      - check-and-build-only
+
 
 jobs:
   Maven-Build:
@@ -28,17 +29,13 @@ jobs:
           root: .
           paths:
             - .
+  check-and-build-only:
+    docker:
+      - image: node:14
+    resource_class: hardik2607/circle-ci
+    steps:
       - docker/build:
-          dockerfile: Dockerfile
           attach-at: .
+          dockerfile: Dockerfile
           image: $CIRCLE_PROJECT_REPONAME/$CIRCLE_BUILD_NUM
-          step-name: Docker-Build
-
-  # Docker-Build:
-  #   docker:
-  #     - image: node:14
-  #   resource_class: hardik2607/circle-ci
-  #   steps:
-  #     - docker-publish:
-  #         deploy: false
-          
+          step-name: Docker-Build          
