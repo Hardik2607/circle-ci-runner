@@ -24,8 +24,13 @@ jobs:
           paths:
             - ~/.m2
           key: maven-cache
+      - persist_to_workspace:
+          root: .
+          paths:
+            - .
       - docker/build:
           dockerfile: Dockerfile
+          attach-at: .
           image: $CIRCLE_PROJECT_REPONAME/$CIRCLE_BUILD_NUM
           step-name: Docker-Build
 
