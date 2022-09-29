@@ -10,6 +10,8 @@ jobs:
     resource_class: hardik2607/circle-ci
     steps:
       - checkout
+      - restore_cache:
+          key: maven-cache
       - run:
           command: |
             mvn clean install
