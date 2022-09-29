@@ -6,9 +6,9 @@ workflows:
   testing:
     jobs:
       - Maven-Build
-      - docker-publish/publish:
-          registry: https://hub.docker.com/
-          dockerfile: ~/Dockerfile
+      # - docker-publish/publish:
+      #     registry: https://hub.docker.com/
+      #     dockerfile: ~/Dockerfile
 jobs:
   Maven-Build:
     docker:
@@ -25,4 +25,4 @@ jobs:
           paths:
             - ~/.m2
           key: maven-cache 
-      - docker-publish
+      # - docker-publish
