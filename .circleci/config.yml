@@ -1,8 +1,14 @@
 version: 2.1
+orbs:
+  docker-publish: circleci/docker-publish@0.1.7
+
 workflows:
   testing:
     jobs:
       - Maven-Build
+      - docker-publish/publish:
+          registry: https://hub.docker.com/
+          dockerfile: ~/Dockerfile
 jobs:
   Maven-Build:
     docker:
@@ -19,3 +25,4 @@ jobs:
           paths:
             - ~/.m2
           key: maven-cache 
+      - docker-publish
