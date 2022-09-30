@@ -10,7 +10,10 @@ workflows:
           app_folder: .
           path: .
           dockerfile: Dockerfile
-          tags: $CIRCLE_BUILD_NUM
+          tag: $CIRCLE_BUILD_NUM
+          extra_build_ags: "" 
+          use-buildkit: true
+          image: $CIRCLE_PROJECT_REPONAME
       # - check-and-build-only:
       #     requires:
       #       - "Maven-Build"
