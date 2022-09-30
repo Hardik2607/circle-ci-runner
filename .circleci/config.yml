@@ -31,11 +31,10 @@ jobs:
             - .
   build:
     docker:
-      - image: docker:latest
-    resource_class: hardik2607/circle-ci
+      - image: cimg/base:2022.06
     steps:
       - attach_workspace:
           at: .
-      - run:
-          command: |
-            docker build . 
+      # ... steps for building/testing app ...
+      - setup_remote_docker:
+          version: 20.10.14
