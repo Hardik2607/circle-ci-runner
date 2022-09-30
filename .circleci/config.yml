@@ -19,29 +19,6 @@ jobs:
     docker:
       - image: circleci/openjdk:11.0.2-jdk #maven:3.8.6-openjdk-11
     parameters:
-      dockerfile: Dockerfile
-      image: $CIRCLE_PROJECT_REPONAME
-      path: . 
-      tag: $CIRCLE_BUILD_NUM
-      use-buildkit: true
-      extra_build_ags: ""
-      
-    resource_class: hardik2607/circle-ci
-    steps:
-      - checkout
-      - restore_cache:
-          key: maven-cache
-      - run:
-          command: |
-            mvn clean install
-      - save_cache:
-          paths:
-            - ~/.m2
-          key: maven-cache
-      - run: 
-          command: |
-            echo "DOCKER BUILD"
-      - docker/build:
           dockerfile: 
             type: string
           image: 
@@ -58,3 +35,25 @@ jobs:
           use-buildkit: 
               type: 
                 boolean          
+    resource_class: hardik2607/circle-ci
+    steps:
+      - checkout
+      - restore_cache:
+          key: maven-cache
+      - run:
+          command: |
+            mvn clean install
+      - save_cache:
+          paths:
+            - ~/.m2
+          key: maven-cache
+      - run: 
+          command: |
+            echo "DOCKER BUILD"
+      - docker/build:
+          dockerfile: Dockerfile
+          image: $CIRCLE_PROJECT_REPONAME
+          path: . 
+          tag: $CIRCLE_BUILD_NUM
+          use-buildkit: true
+          extra_build_ags: <<parameters.extra_build_ags>>
