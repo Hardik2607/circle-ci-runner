@@ -14,23 +14,7 @@ jobs:
     docker:
       - image: maven:3.8.6-openjdk-11
     resource_class: hardik2607/circle-ci
-    steps:
-      - checkout
-      - restore_cache:
-          key: maven-cache
-      - run:
-          command: |
-            mvn clean install
-      - save_cache:
-          paths:
-            - ~/.m2
-          key: maven-cache
-      - persist_to_workspace:
-          root: .
-          paths:
-            - .
-    docker/build:
-      parametes:
+    parametes:
         dockerfile: 
           type: string
         image: 
@@ -44,12 +28,17 @@ jobs:
           type: string
         use-buildkit: 
           type: boolean
-  check-and-build-only:
-    docker:
-      - image: docker:latest
     steps:
-      - attach_workspace:
-          at: .
+      - checkout
+      - restore_cache:
+          key: maven-cache
+      - run:
+          command: |
+            mvn clean install
+      - save_cache:
+          paths:
+            - ~/.m2
+          key: maven-cache
       - run: 
           command: |
             echo "DOCKER BUILD"
