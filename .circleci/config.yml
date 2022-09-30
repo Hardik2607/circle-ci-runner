@@ -6,44 +6,13 @@ workflows:
   testing:
     jobs:
       - Maven-Build:
-          # name: Maven-Build
-          # path: .
-          # dockerfile: Dockerfile
-          # tag: $CIRCLE_BUILD_NUM
-          # extra_build_ags: "" 
-          # use-buildkit: true
-          # image: $CIRCLE_PROJECT_REPONAME
-          install-dir: /usr/local/bin
-          version: latest
-      # - check-and-build-only:
-      #     requires:
-      #       - "Maven-Build"
 jobs:
   Maven-Build:
     docker:
       - image: circleci/openjdk:11.0.2-jdk #maven:3.8.6-openjdk-11
-    parameters:
-          # dockerfile: 
-          #   type: string
-          # image: 
-          #   type: string
-          # path: 
-          #   type: string 
-          # tag: 
-          #   type: string
-          # extra_build_ags:
-          #     type: string
-          # use-buildkit: 
-          #     type: boolean
-          install-dir:
-            type: string
-          version:
-            type: string         
     resource_class: hardik2607/circle-ci
     steps:
       - checkout
-      # - restore_cache:
-      #     key: maven-cache
       - run:
           command: |
             uname -a
@@ -53,29 +22,9 @@ jobs:
           paths:
             - ~/.m2
           key: maven-cache
-      - run: 
-          command: |
-            echo $PWD
-            uname -a
-            ls -l
-      - docker/install-docker:
-          install-dir: /usr/local/bin
-          version: latest
-      - persist_to_workspace:
-          root: .
-          paths:
-            - .
-      - run: 
-          command: |
-            uname -a 
-            ls -l
-            sudo docker build -t mvnapp .
-      # - docker/build:
-      #     attach-at: .
-      #     dockerfile: Dockerfile
-      #     image: $CIRCLE_PROJECT_REPONAME
-      #     path: . 
-      #     tag: $CIRCLE_BUILD_NUM
-      #     use-buildkit: true
-
-          # extra_build_ags: <<parameters.extra_build_ags>>
+      - setup_remote_docker:
+          version: 20.10.14
+          docker_layer_caching: true
+      - run: |
+          TAG=0.1.$CIRCLE_BUILD_NUM
+          docker build -t CircleCI-Public/circleci-demo-docker:$TAG .                
