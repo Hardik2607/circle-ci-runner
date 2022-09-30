@@ -6,7 +6,9 @@ workflows:
   testing:
     jobs:
       - Maven-Build
-      - check-and-build-only
+      - check-and-build-only:
+          requires:
+            - "Maven-Build"
 jobs:
   Maven-Build:
     docker:
