@@ -8,7 +8,7 @@ workflows:
       - Maven-Build
       - check-and-build-only:
           image: $CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME
-          update-description: true
+
 
 
 jobs:
