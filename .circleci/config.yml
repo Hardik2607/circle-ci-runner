@@ -5,7 +5,7 @@ orbs:
 workflows:
   testing:
     jobs:
-      - Maven-Build:
+      - Maven-Build
 jobs:
   Maven-Build:
     docker:
