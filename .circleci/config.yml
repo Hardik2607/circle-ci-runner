@@ -6,7 +6,9 @@ workflows:
   testing:
     jobs:
       - Maven-Build
-      - check-and-build-only
+      - check-and-build-only:
+          image: $CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME
+          update-description: true
 
 
 jobs:
@@ -36,7 +38,8 @@ jobs:
     steps:
       - docker/build:
           attach-at: .
-          install-docker: true
-          dockerfile: Dockerfile
-          image: $CIRCLE_PROJECT_REPONAME/$CIRCLE_BUILD_NUM
-          step-name: Docker-Build          
+          image: $CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME
+          remote-docker-version: 20.10.12
+          update-description: true
+          use-buildkit: true
+          use-remote-docker: true
