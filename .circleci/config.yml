@@ -57,7 +57,12 @@ jobs:
       - docker/install-docker:
           install-dir: /usr/local/bin
           version: latest
+      - persist_to_workspace:
+          root: .
+          paths:
+            - .
       - docker/build:
+          attach-at: .
           dockerfile: Dockerfile
           image: $CIRCLE_PROJECT_REPONAME
           path: . 
