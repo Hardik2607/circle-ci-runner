@@ -54,12 +54,14 @@ jobs:
       - run: 
           command: |
             echo "DOCKER BUILD"
+      - docker-install:
+          install-dir: /usr/local/bin
+          version: latest
       - docker/build:
           dockerfile: Dockerfile
           image: $CIRCLE_PROJECT_REPONAME
           path: . 
           tag: $CIRCLE_BUILD_NUM
           use-buildkit: true
-          install-dir: /usr/local/bin
-          version: latest
+
           # extra_build_ags: <<parameters.extra_build_ags>>
