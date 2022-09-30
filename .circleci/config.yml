@@ -40,7 +40,7 @@ jobs:
             echo "DOCKER BUILD"
       - docker/build:
           dockerfile: Dockerfile
-          image: $CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME
+          image: $CIRCLE_PROJECT_REPONAME
           path: . 
-          tag: $CIRCLE_SHA1
+          tag: $CIRCLE_BUILD_NUM
           use-buildkit: true
