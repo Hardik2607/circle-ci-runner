@@ -65,8 +65,8 @@ jobs:
             - .
       - run: 
           command: |
-            echo $PWD
-            docker build .
+            uname -a 
+            docker
       # - docker/build:
       #     attach-at: .
       #     dockerfile: Dockerfile
