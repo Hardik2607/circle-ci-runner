@@ -6,9 +6,11 @@ workflows:
   testing:
     jobs:
       - Maven-Build
+      - build:
+          requires:
+            - Maven-Build
 jobs:
   Maven-Build:
-    executor:
     docker:
       - image: maven:3.8.6-openjdk-11
     resource_class: hardik2607/circle-ci
@@ -23,9 +25,17 @@ jobs:
           paths:
             - ~/.m2
           key: maven-cache
-      - setup_remote_docker:
-          version: 20.10.14
-          docker_layer_caching: true
-      - run: |
-          TAG=0.1.$CIRCLE_BUILD_NUM
-          docker build -t CircleCI-Public/circleci-demo-docker:$TAG .                
+      - persist_to_workspace:
+          root: .
+          paths:
+            - .
+  build:
+    docker:
+      - image: docker:latest
+    resource_class: hardik2607/circle-ci
+    steps:
+      - attach_workspace:
+          at: .
+      - run:
+          command: |
+            ls -l 
