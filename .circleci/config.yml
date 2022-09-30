@@ -31,7 +31,7 @@ jobs:
             - .
   check-and-build-only:
     docker:
-      - image: node:14
+      - image: docker:latest
     steps:
       - attach_workspace:
           at: .
