@@ -39,7 +39,6 @@ jobs:
           command: |
             echo "DOCKER BUILD"
       - docker/build:
-          attach-at: .
           dockerfile: Dockerfile
           image: $CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME
           path: . 
