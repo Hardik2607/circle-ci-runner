@@ -54,7 +54,7 @@ jobs:
       - run: 
           command: |
             echo "DOCKER BUILD"
-      - docker-install:
+      - docker/install-docker:
           install-dir: /usr/local/bin
           version: latest
       - docker/build:
