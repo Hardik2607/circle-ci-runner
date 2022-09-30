@@ -9,7 +9,7 @@ workflows:
 jobs:
   Maven-Build:
     docker:
-      - image: circleci/openjdk:11.0.2-jdk #maven:3.8.6-openjdk-11
+      - image: maven:3.8.6-openjdk-11
     resource_class: hardik2607/circle-ci
     steps:
       - checkout
