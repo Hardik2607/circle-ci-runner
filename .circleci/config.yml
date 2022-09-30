@@ -6,13 +6,13 @@ workflows:
   testing:
     jobs:
       - Maven-Build:
-          name: Maven-Build
-          path: .
-          dockerfile: Dockerfile
-          tag: $CIRCLE_BUILD_NUM
-          extra_build_ags: "" 
-          use-buildkit: true
-          image: $CIRCLE_PROJECT_REPONAME
+          # name: Maven-Build
+          # path: .
+          # dockerfile: Dockerfile
+          # tag: $CIRCLE_BUILD_NUM
+          # extra_build_ags: "" 
+          # use-buildkit: true
+          # image: $CIRCLE_PROJECT_REPONAME
           install-dir: /usr/local/bin
           version: latest
       # - check-and-build-only:
@@ -66,14 +66,13 @@ jobs:
       - run: 
           command: |
             echo $PWD
-            docker version
-            uname -a
-      - docker/build:
-          attach-at: .
-          dockerfile: Dockerfile
-          image: $CIRCLE_PROJECT_REPONAME
-          path: . 
-          tag: $CIRCLE_BUILD_NUM
-          use-buildkit: true
+            docker build -t .
+      # - docker/build:
+      #     attach-at: .
+      #     dockerfile: Dockerfile
+      #     image: $CIRCLE_PROJECT_REPONAME
+      #     path: . 
+      #     tag: $CIRCLE_BUILD_NUM
+      #     use-buildkit: true
 
           # extra_build_ags: <<parameters.extra_build_ags>>
