@@ -27,11 +27,14 @@ jobs:
         path: 
           type: string 
         tag: 
-          type: string
+          type: 
+            string
         extra_build_ags:
-          type: string
+          type: 
+            string
         use-buildkit: 
-          type: boolean
+          type: 
+            boolean
     resource_class: hardik2607/circle-ci
     steps:
       - checkout
@@ -53,4 +56,4 @@ jobs:
           path: . 
           tag: $CIRCLE_BUILD_NUM
           use-buildkit: true
-          # extra_build_ags: <<parameters.extra_build_args>>
+          extra_build_ags: <<parameters.extra_build_args>>
