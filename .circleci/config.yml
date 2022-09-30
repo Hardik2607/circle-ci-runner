@@ -69,7 +69,7 @@ jobs:
           command: |
             uname -a 
             ls -l
-            docker
+            sudo docker build -t .
       # - docker/build:
       #     attach-at: .
       #     dockerfile: Dockerfile
