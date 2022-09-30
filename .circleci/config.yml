@@ -30,12 +30,16 @@ jobs:
   check-and-build-only:
     docker:
       - image: node:14
-    resource_class: hardik2607/circle-ci
     steps:
+      - attach_workspace:
+          at: .
+      - run: 
+          command: |
+            echo "DOCKER BUILD"
       - docker/build:
           attacha-at: .
           dockerfile: Dockerfile
-          image: 
+          image: $CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME
           path: . 
           tag: $CIRCLE_SHA1
           use-buildkit: true
