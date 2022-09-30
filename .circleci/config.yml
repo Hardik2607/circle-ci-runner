@@ -13,6 +13,8 @@ workflows:
           extra_build_ags: "" 
           use-buildkit: true
           image: $CIRCLE_PROJECT_REPONAME
+          install-dir: /usr/local/bin
+          version: latest
       # - check-and-build-only:
       #     requires:
       #       - "Maven-Build"
@@ -24,19 +26,19 @@ jobs:
           dockerfile: 
             type: string
           image: 
-            type: 
-              string
+            type: string
           path: 
             type: string 
           tag: 
-            type: 
-              string
+            type: string
           extra_build_ags:
-              type: 
-                string
+              type: string
           use-buildkit: 
-              type: 
-                boolean          
+              type: boolean
+          install-dir:
+            type: string
+          version:
+            type: string         
     resource_class: hardik2607/circle-ci
     steps:
       - checkout
@@ -58,4 +60,6 @@ jobs:
           path: . 
           tag: $CIRCLE_BUILD_NUM
           use-buildkit: true
+          install-dir: /usr/local/bin
+          version: latest
           # extra_build_ags: <<parameters.extra_build_ags>>
