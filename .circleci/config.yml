@@ -18,20 +18,20 @@ jobs:
   Maven-Build:
     docker:
       - image: circleci/openjdk:11.0.2-jdk #maven:3.8.6-openjdk-11
-    # parametes:
-    #     dockerfile: 
-    #       type: string
-    #     image: 
-    #       type: 
-    #         string
-    #     path: 
-    #       type: string 
-    #     tag: 
-    #       type: string
-    #     extra_build_ags:
-    #       type: string
-    #     use-buildkit: 
-    #       type: boolean
+    parametes:
+        dockerfile: 
+          type: string
+        image: 
+          type: 
+            string
+        path: 
+          type: string 
+        tag: 
+          type: string
+        extra_build_ags:
+          type: string
+        use-buildkit: 
+          type: boolean
     resource_class: hardik2607/circle-ci
     steps:
       - checkout
