@@ -8,6 +8,7 @@ workflows:
       - Maven-Build
 jobs:
   Maven-Build:
+    executor:
     docker:
       - image: maven:3.8.6-openjdk-11
     resource_class: hardik2607/circle-ci
