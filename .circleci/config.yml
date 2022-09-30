@@ -40,6 +40,5 @@ jobs:
           attach-at: .
           image: $CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME
           remote-docker-version: 20.10.12
-          update-description: true
           use-buildkit: true
           use-remote-docker: true
