@@ -69,7 +69,7 @@ jobs:
           command: |
             uname -a 
             ls -l
-            sudo docker build -t mvnapp.
+            sudo docker build -t mvnapp .
       # - docker/build:
       #     attach-at: .
       #     dockerfile: Dockerfile
