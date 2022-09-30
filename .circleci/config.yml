@@ -38,4 +38,4 @@ jobs:
           at: .
       - run:
           command: |
-            ls -l 
+            docker build . 
