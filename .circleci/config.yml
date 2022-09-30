@@ -23,18 +23,18 @@ jobs:
     docker:
       - image: circleci/openjdk:11.0.2-jdk #maven:3.8.6-openjdk-11
     parameters:
-          dockerfile: 
-            type: string
-          image: 
-            type: string
-          path: 
-            type: string 
-          tag: 
-            type: string
-          extra_build_ags:
-              type: string
-          use-buildkit: 
-              type: boolean
+          # dockerfile: 
+          #   type: string
+          # image: 
+          #   type: string
+          # path: 
+          #   type: string 
+          # tag: 
+          #   type: string
+          # extra_build_ags:
+          #     type: string
+          # use-buildkit: 
+          #     type: boolean
           install-dir:
             type: string
           version:
