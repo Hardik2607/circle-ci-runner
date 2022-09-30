@@ -7,7 +7,6 @@ workflows:
     jobs:
       - Maven-Build:
           name: Maven-Build
-          app_folder: .
           path: .
           dockerfile: Dockerfile
           tag: $CIRCLE_BUILD_NUM
