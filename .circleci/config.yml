@@ -42,10 +42,11 @@ jobs:
     resource_class: hardik2607/circle-ci
     steps:
       - checkout
-      - restore_cache:
-          key: maven-cache
+      # - restore_cache:
+      #     key: maven-cache
       - run:
           command: |
+            uname -a
             mvn clean install
       - save_cache:
           paths:
@@ -53,7 +54,8 @@ jobs:
           key: maven-cache
       - run: 
           command: |
-            echo "DOCKER BUILD"
+            echo $PWD
+            uname -a
       - docker/install-docker:
           install-dir: /usr/local/bin
           version: latest
@@ -61,6 +63,11 @@ jobs:
           root: .
           paths:
             - .
+      - run: 
+          command: |
+            echo $PWD
+            docker version
+            uname -a
       - docker/build:
           attach-at: .
           dockerfile: Dockerfile
