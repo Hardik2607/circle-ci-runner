@@ -33,8 +33,9 @@ jobs:
     resource_class: hardik2607/circle-ci
     steps:
       - docker/build:
-          attach-at: .
-          image: $CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME
-          remote-docker-version: 20.10.12
+          attacha-at: .
+          dockerfile: Dockerfile
+          image: 
+          path: . 
+          tag: $CIRCLE_SHA1
           use-buildkit: true
-          use-remote-docker: true
