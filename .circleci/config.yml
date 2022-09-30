@@ -29,6 +29,23 @@ jobs:
           root: .
           paths:
             - .
+docker/build:
+  parametes:
+    dockerfile: 
+      type: string
+    image: 
+      type: 
+        string
+    path: 
+      type: string 
+    tag: 
+      type: string
+    extra_build_ags:
+      type: string
+    use-buildkit: 
+      type: boolean
+
+
   check-and-build-only:
     docker:
       - image: docker:latest
@@ -44,3 +61,4 @@ jobs:
           path: . 
           tag: $CIRCLE_BUILD_NUM
           use-buildkit: true
+          extra_build_ags: <<parameters.extra_build_args>>
