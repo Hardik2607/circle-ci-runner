@@ -10,7 +10,6 @@ workflows:
       - build:
           requires:
             - Maven-Build
-      - api-test
 jobs:
   Maven-Build:
     docker:
