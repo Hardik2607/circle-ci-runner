@@ -30,9 +30,13 @@ jobs:
           root: .
           paths:
             - .
+      - run:
+          command: |
+            sudo apt update
+            apt install nodejs npm -y
+            npm install -g newman
       - newman/newman-run:
           collection: https://www.getpostman.com/collections/93a2210e23b5ac549632
-          environment: ./My_Workspace.postman_globals.json
   build:
     docker:
       - image: cimg/base:2022.06
