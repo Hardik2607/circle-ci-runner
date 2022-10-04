@@ -31,12 +31,12 @@ jobs:
           root: .
           paths:
             - .
-    Api-test:
-      docker:
-        image: postman/newman
-      steps:
-        - newman/newman-run:
-            collection: https://www.getpostman.com/collections/93a2210e23b5ac549632
+  Api-test:
+    docker:
+      - image: postman/newman
+    steps:
+      - newman/newman-run:
+          collection: https://www.getpostman.com/collections/93a2210e23b5ac549632
   build:
     docker:
       - image: cimg/base:2022.06
