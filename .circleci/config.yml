@@ -1,5 +1,6 @@
 version: 2.1
 orbs:
+  newman: postman/newman@1.0.0
   docker: circleci/docker@2.1.4
   maven: circleci/maven@1.1
 workflows:
@@ -9,6 +10,7 @@ workflows:
       - build:
           requires:
             - Maven-Build
+      - api-test
 jobs:
   Maven-Build:
     docker:
@@ -29,6 +31,9 @@ jobs:
           root: .
           paths:
             - .
+      - newman/newman-run:
+          collection: https://www.getpostman.com/collections/93a2210e23b5ac549632
+          environment: ./My_Workspace.postman_globals.json
   build:
     docker:
       - image: cimg/base:2022.06
