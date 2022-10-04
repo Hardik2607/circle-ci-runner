@@ -32,7 +32,7 @@ jobs:
             - .
       - run:
           command: |
-            sudo apt update
+            apt update
             apt install nodejs npm -y
             npm install -g newman
       - newman/newman-run:
