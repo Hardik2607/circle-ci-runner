@@ -6,11 +6,11 @@ orbs:
 workflows:
   testing:
     jobs:
-      - Maven-Build:
+      - Maven-Build
       - build:
           requires:
             - Maven-Build
-      - Api-test:
+      - Api-test
 jobs:
   Maven-Build:
     docker:
