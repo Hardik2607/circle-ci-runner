@@ -18,7 +18,7 @@ jobs:
   Maven-Build:
     docker:
       - image: maven:3.8.6-openjdk-11
-    resource_class: hardik2607/circle-ci
+    resource_class: hardik2607/demo
     steps:
       - checkout
       - run:
