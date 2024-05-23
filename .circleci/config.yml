@@ -7,9 +7,6 @@ workflows:
   testing:
     jobs:
       - Maven-Build:
-          requires:
-            - Build Approval
-          type: approval
       - build:
           requires:
             - Maven-Build
